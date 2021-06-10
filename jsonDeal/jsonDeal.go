@@ -1,13 +1,29 @@
 package jsonDeal
 
 import (
+	"awesomeProject/jsonConfig"
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 
 	"awesomeProject/soldierInfo"
 )
 
+func Init() map[string]*soldierInfo.Info {
+
+	dataJson := jsonConfig.ParseConfigFile()
+	var Umap map[string]*soldierInfo.Info
+
+	err := json.Unmarshal(dataJson, &Umap)
+	if err != nil {
+		fmt.Println("unmarshal json file error")
+	}
+
+	da := JsonMarshal(Umap)  ///将需要转化的数据通过json.Marshal() 转化为[]byte 格式
+	JsonWrite(da,"data.json")		  ///将[]byte写入到文件中
+	return  Umap
+}
 // JsonMarshal /将数据转化为[]byte
 func JsonMarshal(info map[string]*soldierInfo.Info) []byte {
 
