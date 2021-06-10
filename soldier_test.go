@@ -2,6 +2,8 @@ package main
 
 import (
 	"awesomeProject/initDeal"
+	"awesomeProject/jsonDeal"
+	"awesomeProject/soldierInfo"
 	"testing"
 )
 
@@ -16,8 +18,8 @@ func Test_readConfigPort(t *testing.T) {
 }
 
 func Test_getRarity(t *testing.T){
-	var Umap map[string]*Info = make(map[string]*Info,1)
-	Umap["10101"] = &Info{
+	var Umap map[string]*soldierInfo.Info = make(map[string]*soldierInfo.Info,1)
+	Umap["10101"] = &soldierInfo.Info{
 		Id:"10101",
 		Name:"Swordsman",
 		UnlockArena:"0",
@@ -26,7 +28,7 @@ func Test_getRarity(t *testing.T){
 		Desc:"army_desc_10101",
 	}
 
-	raeity := getRarity("10101",Umap)
+	raeity := jsonDeal.GetRarity("10101",Umap)
 	if raeity != "1" {
 		t.Errorf("Test_getRarity error")
 	}else {
@@ -35,8 +37,8 @@ func Test_getRarity(t *testing.T){
 }
 
 func Test_getCombatPoints(t *testing.T){
-	var Umap map[string]*Info = make(map[string]*Info,1)
-	Umap["10101"] = &Info{
+	var Umap map[string]*soldierInfo.Info = make(map[string]*soldierInfo.Info,1)
+	Umap["10101"] = &soldierInfo.Info{
 		Id:"10101",
 		Name:"Swordsman",
 		UnlockArena:"0",
@@ -44,7 +46,7 @@ func Test_getCombatPoints(t *testing.T){
 		CombatPoints:"167",
 		Desc:"army_desc_10101",
 	}
-	comPointer := getCombatPoints("10101",Umap)
+	comPointer := jsonDeal.GetCombatPoints("10101",Umap)
 	if comPointer != "167" {
 		t.Errorf("Test_getRarity error")
 	}else {
