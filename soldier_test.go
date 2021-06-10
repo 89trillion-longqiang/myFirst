@@ -1,11 +1,12 @@
 package main
 
 import (
+	"awesomeProject/initDeal"
 	"testing"
 )
 
 func Test_readConfigPort(t *testing.T) {
-	port := readConfigPort("./app.ini")
+	port := initDeal.ReadConfigPort("./app.ini")
 
 	if port != "8000" {
 		t.Errorf("Test_readConfigPort error")
